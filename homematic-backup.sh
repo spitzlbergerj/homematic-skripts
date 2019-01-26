@@ -2,9 +2,14 @@
 # Homematic CCU Backup Script fuer crontab
 # Erstellt am 13.03.11 von Danny B.
 # Angepasst am 05.08.14 von PaulG4H
+# angepasst am 26.01.2019 von spitzlbergerj
+#           Backupdatei Name eingeführt anstatt IP-Adresse
+#           Löschen alter Backups eingebaut
  
 # Parameter
 backupdir="/share/CACHEDEV1_DATA/Backup/Auto/homematic/system-backup"
+name="homematic-ccu3"
+backupanzahl="30"
 host="192.168.178.160"
 user="backup"
 password="LRydfm5UR23f"
@@ -26,10 +31,13 @@ fi
 sessionid=`cat hm.login.response|cut -d "," -f2|awk '{print $2}'|cut -d '"' -f2`
  
 # Backupdatei herunterladen
-wget "http://$host/config/cp_security.cgi?sid=@$sessionid@&action=create_backup" -O $backupdir/$host-backup_$(date +%m-%d-%Y).tar.sbk -q >>$run 2>&1
+wget "http://$host/config/cp_security.cgi?sid=@$sessionid@&action=create_backup" -O $backupdir/$name-backup_$(date +%Y%m%d-%H%M%S).tar.sbk -q >>$run 2>&1
  
 # Homematic Logout
 wget --post-data '{"method":"Session.logout","params":{"_session_id_":"'$sessionid'"}}' http://$host/api/homematic.cgi -O hm.logout.response -q >>$run 2>&1
  
 # temp. Dateien loeschen
 rm hm.login.response hm.logout.response >>$run 2>&1
+
+# Alte Sicherungen entfernen
+ls -tr $backupdir/$name-backup_* | head -n -$backupanzahl | xargs rm
