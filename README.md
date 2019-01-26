@@ -1,2 +1,2 @@
-# homematic-skripts
-skripts and tools for my homematic installation
+# homematic-scripts
+scripts and tools for my homematic installation
