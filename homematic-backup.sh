@@ -4,10 +4,10 @@
 # Angepasst am 05.08.14 von PaulG4H
  
 # Parameter
-backupdir="/volume1/Backup/ccubackup"
-host="10.0.1.200"
-user="Admin"
-password="Passwort"
+backupdir="/share/CACHEDEV1_DATA/Backup/Auto/homematic/system-backup"
+host="192.168.178.160"
+user="backup"
+password="LRydfm5UR23f"
  
 ############### Es sind keine weiteren Anpassung ab hier Notwendig
  
