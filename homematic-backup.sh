@@ -10,9 +10,9 @@
 backupdir="/share/CACHEDEV1_DATA/Backup/Auto/homematic/system-backup"
 name="homematic-ccu3"
 backupanzahl="30"
-host="192.168.178.160"
-user="backup"
-password="LRydfm5UR23f"
+host="1.1.1.1"
+user="user"
+password="password"
  
 ############### Es sind keine weiteren Anpassung ab hier Notwendig
  
